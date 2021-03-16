@@ -1,5 +1,5 @@
 // ./src/routes/games.js
-const { Router } = require('express');
+const { Router } = require("express");
 const { GamesController } = require("../controllers");
 
 const router = Router();
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
     res.send({
         message: "New game created.",
-        game: game
+        game: game,
     });
 });
 

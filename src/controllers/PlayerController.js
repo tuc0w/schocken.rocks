@@ -1,4 +1,4 @@
-const { Player } = require('../database/models');
+const { Player } = require("../database/models");
 
 const PlayersController = {
     async insert(player) {
@@ -8,18 +8,14 @@ const PlayersController = {
     },
 
     async findAll() {
-        const players = await Player
-            .find()
-            .populate('game');
+        const players = await Player.find().populate("game");
         return players;
     },
 
     async findById(id) {
-        const player = await Player
-            .findById(id)
-            .populate('game');
+        const player = await Player.findById(id).populate("game");
         return player;
-    }
+    },
 };
 
 module.exports = PlayersController;

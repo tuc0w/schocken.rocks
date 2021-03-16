@@ -15,8 +15,8 @@ const playerModel = mongoose.Schema(
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Roll",
-            }
-        ]
+            },
+        ],
     },
     {
         timestamps: true,

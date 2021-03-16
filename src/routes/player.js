@@ -1,5 +1,5 @@
 // ./src/routes/games.js
-const { Router } = require('express');
+const { Router } = require("express");
 const { PlayerController } = require("../controllers");
 
 const router = Router();
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
     res.send({
         message: "New player created.",
-        player: player
+        player: player,
     });
 });
 

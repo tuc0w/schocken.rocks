@@ -1,6 +1,6 @@
 // ./src/database/models//index.js
 module.exports = {
-    'Game': require('./Game'),
-    'Player': require('./Player'),
-    'Roll': require('./Roll'),
+    Game: require("./Game"),
+    Player: require("./Player"),
+    Roll: require("./Roll"),
 };
