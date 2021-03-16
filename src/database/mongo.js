@@ -1,25 +1,48 @@
 // ./src/database/mongo.js
 const { MongoMemoryServer } = require("mongodb-memory-server");
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
-let database = null;
-
-async function startDatabase() {
+async function connect() {
     const mongo = new MongoMemoryServer();
-    const mongoDBURL = await mongo.getUri();
-    const connection = await MongoClient.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true });
-    database = connection.db();
+    const mongoUri = await mongo.getUri();
+
+    const mongooseOpts = {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    };
+
+    await mongoose.connect(mongoUri, mongooseOpts, err => {
+        if (err) {
+            console.error(err);
+        }
+    });
 }
 
-async function getDatabase() {
-    if (!database) {
-        await startDatabase();
+async function close() {
+    await mongoose.disconnect();
+    await mongoServer.stop();
+}
+
+async function clear() {
+    const collections = mongoose.connection.collections;
+
+    for (const key in collections) {
+        await collections[key].deleteMany();
     }
-
-    return database;
 }
+
+mongoose.connection.on("connected", function () {
+    console.log(`Database connection open to ${mongoose.connection.host} ${mongoose.connection.name}`);
+});
+mongoose.connection.on("error", function (err) {
+    console.log("Mongoose default connection error: " + err);
+});
+mongoose.connection.on("disconnected", function () {
+    console.log("Mongoose default connection disconnected");
+});
 
 module.exports = {
-    getDatabase,
-    startDatabase,
+    connect,
+    close,
+    clear,
 };

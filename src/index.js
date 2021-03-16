@@ -8,7 +8,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 
 // database dependencies
-const { startDatabase } = require("./database/mongo");
+const database = require("./database/mongo");
 
 // defining the Express app
 const app = express();
@@ -25,11 +25,13 @@ app.use(cors());
 // adding morgan to log HTTP requests
 app.use(morgan("combined"));
 
-// defining an endpoint to return all ads
+// defining endpoints
+app.use('/dice', routes.dice);
 app.use('/games', routes.games);
+app.use('/player', routes.player);
 
 // start the in-memory MongoDB instance
-startDatabase().then(async () => {
+database.connect().then(async () => {
     // start the server
     app.listen(3001, async () => {
         console.log("listening on port 3001");
