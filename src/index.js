@@ -1,11 +1,15 @@
 // ./src/index.js
-const routes = require('./routes');
+const routes = require("./routes");
 
 // importing the dependencies
 const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
+
+// import swagger dependencies
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 // database dependencies
 const database = require("./database/mongo");
@@ -26,9 +30,34 @@ app.use(cors());
 app.use(morgan("combined"));
 
 // defining endpoints
-app.use('/dice', routes.dice);
-app.use('/games', routes.games);
-app.use('/player', routes.player);
+app.use("/dice", routes.dice);
+app.use("/games", routes.games);
+app.use("/player", routes.player);
+
+// define swagger options
+const options = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Schocken.rocks Express API with Swagger",
+            version: "1.0.0",
+            description: "This is the Schocken.rocks API made with Express and documented with Swagger",
+            license: {
+                name: "MIT",
+                url: "https://spdx.org/licenses/MIT.html",
+            },
+        },
+        servers: [
+            {
+                url: "http://localhost:3001",
+            },
+        ],
+    },
+    apis: ["./routes/player.js"],
+};
+
+const openapiSpecification = swaggerJsdoc(options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 // start the in-memory MongoDB instance
 database.connect().then(async () => {
