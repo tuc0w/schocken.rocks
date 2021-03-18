@@ -22,17 +22,4 @@ router.post("/", async (req, res) => {
     });
 });
 
-// // endpoint to delete an ad
-// router.delete("/:id", async (req, res) => {
-//     await deleteGame(req.params.id);
-//     res.send({ message: "Game removed." });
-// });
-
-// // endpoint to update an ad
-// router.put("/:id", async (req, res) => {
-//     const updatedGame = req.body;
-//     await updateGame(req.params.id, updatedGame);
-//     res.send({ message: "Game updated." });
-// });
-
 module.exports = router;
