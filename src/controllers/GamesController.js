@@ -1,3 +1,4 @@
+// ./src/controllers/GamesController.js
 const { Game } = require("../models");
 
 const GamesController = {
