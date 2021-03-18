@@ -1,4 +1,4 @@
-// ./src/database/mongo.js
+// ./src/services/mongodb.js
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 
