@@ -52,6 +52,27 @@ router.get("/", async (req, res) => {
     res.send(await GamesController.findAll());
 });
 
+/**
+ * @swagger
+ * /games/{id}:
+ *   get:
+ *     description: Retrieve a single game.
+ *     tags: [Games]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *           required: true
+ *           description: The game id
+ *     responses:
+ *       "200":
+ *         description: The game that matches the id.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/definitions/Game'
+ */
 router.get("/:id", async (req, res) => {
     res.send(await GamesController.findById(req.params.id));
 });
