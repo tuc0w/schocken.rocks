@@ -1,4 +1,4 @@
-// ./src/database/models/game.js
+// ./src/models/game.js
 const mongoose = require("mongoose");
 
 const gameModel = mongoose.Schema(

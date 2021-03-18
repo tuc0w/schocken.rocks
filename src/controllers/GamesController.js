@@ -1,4 +1,4 @@
-const { Game } = require("../database/models");
+const { Game } = require("../models");
 
 const GamesController = {
     async insert(games) {

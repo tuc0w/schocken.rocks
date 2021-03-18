@@ -12,7 +12,9 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
 // database dependencies
-const database = require("./database/mongo");
+const database = require("./services/mongodb");
+
+const PORT = process.env.PORT || 3001;
 
 // defining the Express app
 const app = express();
@@ -35,25 +37,24 @@ app.use("/games", routes.games);
 app.use("/player", routes.player);
 
 // define swagger options
-const options = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "Schocken.rocks Express API with Swagger",
-            version: "1.0.0",
-            description: "This is the Schocken.rocks API made with Express and documented with Swagger",
-            license: {
-                name: "MIT",
-                url: "https://spdx.org/licenses/MIT.html",
-            },
+const swaggerDefinition = {
+    info: {
+        title: "Schocken.rocks Express API with Swagger",
+        version: "1.0.0",
+        description: "This is the Schocken.rocks API made with Express and documented with Swagger",
+        license: {
+            name: "MIT",
+            url: "https://spdx.org/licenses/MIT.html",
         },
-        servers: [
-            {
-                url: "http://localhost:3001",
-            },
-        ],
     },
-    apis: ["./routes/player.js"],
+    host: `localhost:${PORT}`,
+    basePath: '/', 
+}
+const options = {
+    // Import swaggerDefinitions
+    swaggerDefinition,
+    // Path to the API docs
+    apis: ["./src/routes/player.js"],
 };
 
 const openapiSpecification = swaggerJsdoc(options);

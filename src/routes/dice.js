@@ -1,6 +1,6 @@
 // ./src/routes/dice.js
 const { Router } = require("express");
-const { Roll } = require("../database/models");
+const { Roll } = require("../models");
 const { GamesController, PlayerController } = require("../controllers");
 
 const router = Router();

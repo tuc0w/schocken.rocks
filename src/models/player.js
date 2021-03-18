@@ -1,4 +1,4 @@
-// ./src/database/models/player.js
+// ./src/models/player.js
 const mongoose = require("mongoose");
 
 const playerModel = mongoose.Schema(

@@ -1,4 +1,4 @@
-const { Player } = require("../database/models");
+const { Player } = require("../models");
 
 const PlayersController = {
     async insert(player) {

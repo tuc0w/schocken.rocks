@@ -1,4 +1,4 @@
-const { Roll } = require("../database/models");
+const { Roll } = require("../models");
 
 const RollsController = {
     async insert(roll) {
