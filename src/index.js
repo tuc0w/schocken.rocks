@@ -35,16 +35,12 @@ const swaggerDefinition = {
         },
     },
     host: `localhost:${PORT}`,
-    basePath: '/', 
-}
+    basePath: "/",
+};
 
 const options = {
     swaggerDefinition,
-    apis: [
-        "./src/routes/dice.js",
-        "./src/routes/games.js",
-        "./src/routes/player.js",
-    ],
+    apis: ["./src/routes/dice.js", "./src/routes/games.js", "./src/routes/player.js"],
 };
 
 const openapiSpecification = swaggerJsdoc(options);

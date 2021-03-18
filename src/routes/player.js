@@ -9,7 +9,7 @@ const router = Router();
  * tags:
  *   name: Player
  *   description: API to manage player models.
- * 
+ *
  * definitions:
  *   Player:
  *     type: object
