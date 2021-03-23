@@ -1,6 +1,6 @@
 // ./src/models/index.js
 module.exports = {
-    Game: require("./Game"),
-    Player: require("./Player"),
-    Roll: require("./Roll"),
+    Game: require("./game"),
+    Player: require("./player"),
+    Roll: require("./roll"),
 };
